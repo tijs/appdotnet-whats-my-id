@@ -25,19 +25,26 @@ def complete():
             'code': code   
         }
         token = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
-        result = anyjson.deserialize(token.json)
-        access_token = result['access_token']
+ 
+        #print str(token)
 
-        #save token to session
-        session['access_token'] = access_token
+        result = anyjson.deserialize(token.text)
+        access_token = None
 
-        # Get the username
-        auth_headers = {'Authorization': 'Bearer %s' % access_token }
-        user = requests.get("https://alpha-api.app.net/stream/0/users/me")
+        if not result.get('error', None):
+            access_token = result.get('access_token', None)
 
-        return render_template('complete.html')
-    else:
-        return redirect(url_for('hello'))
+        if access_token:
+            #save token to session
+            session['access_token'] = access_token
+
+            # Get the username
+            auth_headers = {'Authorization': 'Bearer %s' % access_token }
+            user = requests.get("https://alpha-api.app.net/stream/0/users/me")
+
+            return render_template('complete.html')
+    
+    return redirect(url_for('hello'))
 
 
 @app.route('/follow')
@@ -58,7 +65,7 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.secret_key = 'V\x16d|;\x8a\xff]&\x80n\xd7\x98\x01\xd1j\x06,\xa32\x97\xcf_\xfd'
-    #app.debug = True
+    app.debug = True
 
     # setup a simple handler for static files
     app.jinja_env.globals['static'] = (

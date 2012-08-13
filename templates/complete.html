@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Your app.net user id is.. - AppDotBrag for app.net</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic' rel='stylesheet' type='text/css'>
+    <link href="{{ static('css/style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Hi {{ user.name }}</h1>
+    <p class="intro">
+        Your fabulous user id is <strong>{{ user.id }}</strong>. Ain't that just perfect.
+    </p>
+</body>
+</html>

@@ -42,7 +42,7 @@ def complete():
             auth_headers = {'Authorization': 'Bearer %s' % access_token }
             user = requests.get("https://alpha-api.app.net/stream/0/users/me")
 
-            return render_template('complete.html')
+            return render_template('complete.html', user=user)
     
     return redirect(url_for('hello'))
 

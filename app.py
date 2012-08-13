@@ -25,14 +25,8 @@ def complete():
             'code': code   
         }
         token = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
- 
-        #print str(token)
-
         result = anyjson.deserialize(token.text)
-        access_token = None
-
-        if not result.get('error', None):
-            access_token = result.get('access_token', None)
+        access_token = result.get('access_token', None)
 
         if access_token:
             #save token to session

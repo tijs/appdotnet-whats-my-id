@@ -1,18 +1,11 @@
-<html>
-<head>
-    <title>Bragging rights? we got your back - AppDotBrag for app.net</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic' rel='stylesheet' type='text/css'>
-    <link href="{{ static('css/style.css') }}" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <h1>Login to party</h1>
-    <p class="intro">
-        We'll show you your app.net user ID but you will have to login first!
-    </p>
-    <a id="login" href="https://alpha.app.net/oauth/authenticate?client_id={{ client_id }}&response_type=code&redirect_uri=http://rocky-sierra-7348.herokuapp.com/oauth/complete">login with app.net</a>
-    <p>
-        <em>Is this safe?</em> Obviously we won't spam you, because that sucks. Also; we won't store your login in any database, just in a session which will expire all by itself.
-    </p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+<h1>Login to party</h1>
+<p class="intro">
+    We'll show you your app.net user ID but you will have to login first!
+</p>
+<a id="login" href="https://alpha.app.net/oauth/authenticate?client_id={{ client_id }}&response_type=code&redirect_uri=http://rocky-sierra-7348.herokuapp.com/oauth/complete">login with app.net</a>
+<p>
+    <em>Is this safe?</em> Obviously we won't spam you, because that sucks. Also; we won't store your login in any database, just in a session which will expire all by itself.
+</p>
+{% endblock %}

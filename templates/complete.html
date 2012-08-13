@@ -6,9 +6,13 @@
     <link href="{{ static('css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
+    {{ user }}
     <h1>Hi {{ user['name'] }}</h1>
     <p class="intro">
         Your fabulous user id is <strong>{{ user['id'] }}</strong>. Ain't that just perfect.
+    </p>
+    <p>
+        That was a lot of fun wasn't it? Want to keep in touch? Just <a href="{{ url_for('follow_me') }}">follow me</a> on App.net.
     </p>
 </body>
 </html>

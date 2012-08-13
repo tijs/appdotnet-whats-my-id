@@ -37,14 +37,22 @@ def complete():
         if access_token:
             #save token to session
             session['access_token'] = access_token
-
-            # Get the username
-            auth_headers = {'Authorization': 'Bearer %s' % access_token }
-            user = requests.get("https://alpha-api.app.net/stream/0/users/me")
-
-            return render_template('complete.html', user=user)
+            redirect(url_for('show'))
     
     return redirect(url_for('hello'))
+
+
+@app.route('/show')
+def show():
+    if 'access_token' in session:
+        access_token = escape(session['access_token'])
+        
+        # Get the User details
+        auth_headers = {'Authorization': 'Bearer %s' % access_token }
+        user = requests.get("https://alpha-api.app.net/stream/0/users/me")
+        return render_template('complete.html', user=user)
+    else:
+        return redirect(url_for('hello'))
 
 
 @app.route('/follow')
@@ -53,6 +61,7 @@ def follow_me():
         access_token = escape(session['access_token'])
         auth_headers = {'Authorization': 'Bearer %s' % access_token }
         user = requests.post("https://alpha-api.app.net/stream/0/users/346/follow")
+        return redirect(url_for('show'))
     else:
         return redirect(url_for('hello'))
 

@@ -6,9 +6,9 @@
     <link href="{{ static('css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Hi {{ user.name }}</h1>
+    <h1>Hi {{ user['name'] }}</h1>
     <p class="intro">
-        Your fabulous user id is <strong>{{ user.id }}</strong>. Ain't that just perfect.
+        Your fabulous user id is <strong>{{ user['id'] }}</strong>. Ain't that just perfect.
     </p>
 </body>
 </html>

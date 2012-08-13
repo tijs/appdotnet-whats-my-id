@@ -4,8 +4,8 @@
 <p class="intro">
     We'll show you your app.net user ID but you will have to login first!
 </p>
-<a id="login" href="https://alpha.app.net/oauth/authenticate?client_id={{ client_id }}&response_type=code&redirect_uri=http://rocky-sierra-7348.herokuapp.com/oauth/complete">login with app.net</a>
+<a id="login" href="https://alpha.app.net/oauth/authenticate?client_id={{ client_id }}&response_type=code&redirect_uri={{ redirect_url }}">login with app.net</a>
 <p>
-    <em>Is this safe?</em> Obviously we won't spam you, because that sucks. Also; we won't store your login in any database, just in a session which will expire all by itself.
+    <em>Is this safe?</em> We won't store your login in any database, just in a session which will expire all by itself. So yeah?
 </p>
 {% endblock %}

@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block body %}
-{{ user }}
 <h1>Hi {{ user['name'] }}</h1>
+{% if user['avatar_image']['url'] %}
+<p>
+    <img src="{{ user['avatar_image']['url'] }}" width="200" height="200">
+</p>
+{% endif %}
 <p class="intro">
     Your fabulous user id is <strong>{{ user['id'] }}</strong>. Ain't that just perfect.
 </p>
 <p>
-    That was a lot of fun wasn't it? Want to keep in touch? Just <a href="{{ url_for('follow_me') }}">follow me</a> on App.net.
+    That was a lot of fun wasn't it? Want to keep in touch? Just <a href="https://alpha.app.net/tijs">follow me</a> on App.net.
 </p>
 {% endblock %}

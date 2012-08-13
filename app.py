@@ -58,12 +58,10 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.secret_key = 'V\x16d|;\x8a\xff]&\x80n\xd7\x98\x01\xd1j\x06,\xa32\x97\xcf_\xfd'
-    app.debug = True
+    #app.debug = True
 
     # setup a simple handler for static files
     app.jinja_env.globals['static'] = (
         lambda filename: url_for('static', filename=filename))
-
-
 
     app.run(host='0.0.0.0', port=port)

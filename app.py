@@ -24,8 +24,8 @@ def complete():
             'redirect_uri': 'http://rocky-sierra-7348.herokuapp.com/oauth/complete',
             'code': code   
         }
-        token = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
-        result = anyjson.deserialize(token.text)
+        r = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
+        result = anyjson.deserialize(r.text)
 
         if result.get('error', None):
             return result.get('error')
@@ -47,8 +47,14 @@ def show():
         
         # Get the User details
         auth_headers = {'Authorization': 'Bearer %s' % access_token }
-        user = requests.get("https://alpha-api.app.net/stream/0/users/me")
-        return render_template('complete.html', user=user)
+        r = requests.get("https://alpha-api.app.net/stream/0/users/me")
+        result = anyjson.deserialize(r.text)
+
+        if result.get('error', None):
+            return result.get('error')
+
+        user = result
+        return render_template('show.html', user=user)
     else:
         return redirect(url_for('hello'))
 

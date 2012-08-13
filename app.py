@@ -26,6 +26,10 @@ def complete():
         }
         token = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
         result = anyjson.deserialize(token.text)
+
+        if result.get('error', None):
+            return result.get('error')
+
         access_token = result.get('access_token', None)
 
         if access_token:

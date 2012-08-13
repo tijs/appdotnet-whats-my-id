@@ -8,17 +8,9 @@
 <body>
     <h1>Login to party</h1>
     <p class="intro">
-        We'll show you your app.net user ID<sup>*</sup> but you will have to login first!
+        We'll show you your app.net user ID but you will have to login first!
     </p>
-    <form action="https://alpha.app.net/oauth/authenticate" method="GET">
-        <input type="hidden" name="client_id" value="f6Bcnbmbx8dvRmEf6PcTWjPHgnyhLDCj">
-        <input type="hidden" name="response_type" value="code">
-        <input type="hidden" name="redirect_uri" value="http://rocky-sierra-7348.herokuapp.com/oauth/complete">
-        <input type="hidden" name="scope" value="[email,follow]">
-        <button id="login">login with app.net</button>
-    </form>
-    <p>
-        <sup>*</sup>Yes that is all i'm afraid.</p>
+    <a id="login" href="https://alpha.app.net/oauth/authenticate?client_id={{ client_id }}&response_type=code&redirect_uri=http://rocky-sierra-7348.herokuapp.com/oauth/complete">login with app.net</a>
     <p>
         <em>Is this safe?</em> Obviously we won't spam you, because that sucks. Also; we won't store your login in any database, just in a session which will expire all by itself.
     </p>

@@ -5,22 +5,25 @@ body, html {
     background: #EF4723;
     padding: 30px;
     text-align: center;
+    color: #0C0C0C;
 }
 h1 {
     font-size: 250%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
+    border-bottom: 1px solid #222;
+    width: 400px;
+    margin: 0 auto;
 }
+a { color: #0C0C0C; text-decoration: none; }
+p { padding: 20px 0; }
+
 p.intro {
-    padding: 20px;
-    border-top: 1px solid #222;
     font-size: 120%;
 }
-form {
-    padding: 20px;
-}
-button {
+a#login {
+    width: 400px;
     font-size: 180%;
     font-family: 'Open Sans', sans-serif;
     border: 0;
@@ -28,4 +31,7 @@ button {
     padding: 20px 30px;
     -moz-border-radius: 15px;
     border-radius: 15px;
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
 }

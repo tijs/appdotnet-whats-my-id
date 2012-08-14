@@ -1,8 +1,11 @@
 import os
 import requests
-from flask import Flask, session, redirect, url_for, escape, request, render_template, json, jsonify
+from flask import Flask, session, redirect, url_for, escape, request, render_template, json
 
 app = Flask(__name__)
+
+# set the analytics account ID
+app.jinja_env.globals['analytics_account'] = os.environ['ANALYTICS_ACCOUNT']
 
 @app.route('/')
 def hello():
@@ -81,8 +84,7 @@ if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.secret_key = 'V\x16d|;\x8a\xff]&\x80n\xd7\x98\x01\xd1j\x06,\xa32\x97\xcf_\xfd'
-    #app.debug = True
-
+ 
     # setup a simple handler for static files
     app.jinja_env.globals['static'] = (
         lambda filename: url_for('static', filename=filename))

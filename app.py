@@ -60,7 +60,9 @@ def show():
         if r.status_code == requests.codes.ok:
             result = json.loads(r.text)
         else:
-            return "sorry but that didn't work"
+            # probably the access_token is no longer valid so kill it and go back home
+            session.pop('access_token', None)
+            return redirect(url_for('hello'))
 
         user = result
         return render_template('show.html', user=user)

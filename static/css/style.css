@@ -23,6 +23,9 @@ p a { text-decoration: underline; }
 p.intro {
     font-size: 120%;
 }
+p.footer {
+    font-size: 90%;
+}
 a#login {
     width: 400px;
     font-size: 180%;

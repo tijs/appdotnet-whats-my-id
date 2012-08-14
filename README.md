@@ -29,6 +29,7 @@ Your .env file should look something like this:
     CLIENT_ID=[your app.net app client id]
     CLIENT_SECRET=[your app.net app secret]
     REDIRECT_URL=http://127.0.0.1:5000/oauth/complete # default local host:port
+    ANALYTICS_ACCOUNT='' # your analytics id if needed; optional
 
 ## What this is not
 

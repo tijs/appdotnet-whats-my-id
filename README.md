@@ -30,6 +30,8 @@ Your .env file should look something like this:
     CLIENT_SECRET=[your app.net app secret]
     REDIRECT_URL=http://127.0.0.1:5000/oauth/complete # default local host:port
     ANALYTICS_ACCOUNT='' # your analytics id if needed; optional
+    SECRET_KEY='' # a random secret key for your session cookies
+    DEBUG=True # set this to false (or do not set it) for production
 
 ## What this is not
 

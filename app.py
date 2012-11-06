@@ -16,11 +16,10 @@ def hello():
     redirect_url = os.environ['REDIRECT_URL']
     return render_template('hello.html', client_id=client_id, redirect_url=redirect_url)
 
+
 @app.route('/oauth/complete')
 def complete():
-
     code = request.args.get('code', None)
-
     if code:
         # Get the access token here
         payload = {
@@ -36,13 +35,15 @@ def complete():
         else:
             return "sorry but that didn't work"
 
-        access_token = result.get('access_token', None)
+        # response item is in 'data'
+        data = result.get('data', None)
 
         #save token to session
-        session['access_token'] = access_token
+        session['access_token'] = data['access_token']
         return redirect(url_for('show'))
     
     return redirect(url_for('hello'))
+
 
 @app.route('/oauth/logout')
 def logout():
@@ -72,9 +73,11 @@ def show():
     else:
         return redirect(url_for('hello'))
 
+
 @app.errorhandler(500)
 def page_not_found(error):
     return render_template('500.html'), 500
+
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -83,7 +86,7 @@ def page_not_found(error):
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.secret_key = 'V\x16d|;\x8a\xff]&\x80n\xd7\x98\x01\xd1j\x06,\xa32\x97\xcf_\xfd'
+    app.secret_key = os.environ['SECRET_KEY']
  
     # setup a simple handler for static files
     app.jinja_env.globals['static'] = (

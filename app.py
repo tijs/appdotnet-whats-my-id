@@ -30,7 +30,7 @@ def complete():
             'code': code   
         }
         r = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
-        if r.status_code == requests.codes.ok:
+        if r.code == requests.codes.ok:
             result = json.loads(r.text)
         else:
             return "sorry but that didn't work"

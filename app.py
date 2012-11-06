@@ -30,16 +30,14 @@ def complete():
             'code': code   
         }
         r = requests.post("https://alpha.app.net/oauth/access_token", data=payload)
-        if r.code == requests.codes.ok:
+
+        if r.status_code == requests.codes.ok:
             result = json.loads(r.text)
         else:
             return "sorry but that didn't work"
 
-        # response item is in 'data'
-        data = result.get('data', None)
-
         #save token to session
-        session['access_token'] = data['access_token']
+        session['access_token'] = result.get('access_token', None)
         return redirect(url_for('show'))
     
     return redirect(url_for('hello'))
@@ -61,6 +59,7 @@ def show():
         # Get the User details
         headers = {'Authorization': 'Bearer %s' % access_token }
         r = requests.get("https://alpha-api.app.net/stream/0/users/me", headers=headers)
+
         if r.status_code == requests.codes.ok:
             result = json.loads(r.text)
         else:
@@ -68,7 +67,7 @@ def show():
             session.pop('access_token', None)
             return redirect(url_for('hello'))
 
-        user = result
+        user = result.get('data', None)
         return render_template('show.html', user=user)
     else:
         return redirect(url_for('hello'))
@@ -92,4 +91,4 @@ if __name__ == '__main__':
     app.jinja_env.globals['static'] = (
         lambda filename: url_for('static', filename=filename))
 
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('DEBUG', False))
